@@ -1,14 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import RegisterComponent from './components/register';
-import Register1 from './components/register1';
+import Register2 from './components/register2';
+import StateHookComponent from './components/statehook';
+import StateHookAdvanceComponent from './components/statehookadvance';
 
 
 function App1() {
   return (
     <div className="App">
-      <RegisterComponent/>  
-      <Register1/>
+      <StateHookComponent />
+      <StateHookAdvanceComponent />
+
+      <Register2 />
+
     </div>
   );
 }
