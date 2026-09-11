@@ -7,7 +7,7 @@ import AddEmployeeComponent from './pages/addEmployee';
 import EditEmployeeComponent from './pages/editEmployee';
 import ViewEmployeeComponent from './pages/viewEmployee';
 import FooterComponent from './components1/footer';
-import EmployeeService from './service/employee';
+import EmployeeServiceFetchApi from './service/employeefetchapi';
 import { useEffect } from 'react';
 
 import React, { useState } from 'react';
@@ -18,18 +18,9 @@ function App1() {
   const[employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    EmployeeService.getEmployees().then((res) => {
-      if(!res){
-        throw new Error("No response from server");
-      }
+    EmployeeServiceFetchApi.getEmployees().then((res) => {
       setEmployees(res.data);
-    }
-    ).catch((error) => {
-      console.error("Error fetching employees:", error);
-      const errorMessage = error.message || "An error occurred while fetching employees.";
-      alert(errorMessage);
-    }
-    );
+    });
   }, []);
 
   function addEmployee(employee) {
