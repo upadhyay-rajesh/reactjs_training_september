@@ -1,12 +1,19 @@
 import React from "react";
 import useFetch from "./useFetch";
+import { useEffect } from "react";
 function CustomHookFormComponent() {
 
-    const{
+  
+
+  
+     const{
         data: employees,
         loading,
         error
     } = useFetch("http://localhost:12000/employee");
+
+
+    
 
     if(loading){
         return <div>Loading...</div>;
@@ -19,8 +26,8 @@ function CustomHookFormComponent() {
     return ( 
         <div>
             <h2>Custom Hook Form Component</h2>
-            console.log(employees);
-            {
+            <p>Number of employees: {employees.length}</p>
+             {
             
 
             employees.map((employee) => (
@@ -28,6 +35,7 @@ function CustomHookFormComponent() {
                     <p>Name: {employee.name}</p>
                 </div>
             ))}
+           
         </div>
      );
 }

@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <AppContext />
 
-    <App2 />
+   
   </React.StrictMode>
 );
 
