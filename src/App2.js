@@ -13,34 +13,37 @@ import { useEffect } from 'react';
 import React, { useState } from 'react';
 
 
-function App1() {
+function App2() {
 
   const[employees, setEmployees] = useState([]);
 
   useEffect(() => {
     EmployeeServiceFetchApi.getEmployees().then((res) => {
-      setEmployees(res.data);
+      console.log("Response from server:", res);
+      if(!res){
+        throw new Error("No response from server");
+      }
+      setEmployees(res);
     });
   }, []);
 
   function addEmployee(employee) {
-    //setEmployees([...employees, employee]);
-    EmployeeService.addEmployee(employee).then((res) => {
+    EmployeeServiceFetchApi.addEmployee(employee).then((res) => {
       setEmployees([...employees, res.data]);
     });
+   
   }
 
   function editEmployee(updatedEmployee) {
-    EmployeeService.updateEmployee(updatedEmployee.id,updatedEmployee).then((res) => {
+    EmployeeServiceFetchApi.updateEmployee(updatedEmployee.id, updatedEmployee).then((res) => {
       setEmployees(employees.map((employee) => employee.id === updatedEmployee.id ? updatedEmployee : employee));
     });
   }
+  
   function deleteEmployee(id) {
-    const result = window.confirm("Are you sure you want to delete this employee?");
-    if (result) {
-     setEmployees(employees.filter((employee) => employee.id !== id));
-    }
-    
+    EmployeeServiceFetchApi.deleteEmployee(id).then(() => {
+      setEmployees(employees.filter((employee) => employee.id !== id));
+    });
   }
   
 
@@ -60,4 +63,4 @@ function App1() {
   );
 }
 
-export default App1;
+export default App2;
