@@ -2,6 +2,8 @@ import React from "react";
 import userContext from "./usercontext";
 import Header from "./header";
 import EmployeeForm from "./employeeform";
+import MyFormComponent from "./myForm";
+import CustomHookFormComponent from "./customHookForm";
 function AppContext() {
     const user = {
         name: "John Doe",
@@ -11,7 +13,10 @@ function AppContext() {
         <userContext.Provider value={user}>
             <Header />
             <EmployeeForm />
+            <MyFormComponent />
+            <CustomHookFormComponent />
         </userContext.Provider>
+        
     );
 
 }
